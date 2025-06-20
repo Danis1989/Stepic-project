@@ -28,15 +28,13 @@ while True:
 while True:
     dig_yes_or_no = input("Включать ли цифры 0123456789. Введите да/нет ... ")
     if yes_no(dig_yes_or_no):
-        dig_yes_or_no = 1
+        if par_true(dig_yes_or_no):
+            dig_yes_or_no = 1
+        else
         break
 
 print(dig_yes_or_no)
-# while True:
-#     dig_yes_or_no = input("Включать ли цифры 0123456789. Введите да/нет ... ").lower()
-#     if yes_no(dig_yes_or_no):
-#         par_true(dig_yes_or_no)
-#
+
 #     low_let_yes_or_no = input("Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz. Введите да/нет ... ").lower()
 #     if yes_no(low_let_yes_or_no):
 #         par_true(low_let_yes_or_no)
