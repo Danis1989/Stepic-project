@@ -8,12 +8,12 @@ def int_num(b): # Фун-я для перевода вх. параметра в 
     return int(b) if b.isdigit() else print("Введите цифру для ответа") # Вх. параметр число или нет.
     
 def yes_no(c): # Фун-я для проверки ответа пользователя. Ввел пользователь да или нет
+    c = c.lower()
     return c if c == 'да' or c == 'нет' else print('Для точного ответа введите да или нет ')
 
 def par_true(a):
     if a == 'да':
-        a = 1
-    return a
+        return a
 
 while True:
     pass_quan_usr = input("Введите кол-во паролей которое нужно сгенерировать ... ")
@@ -26,14 +26,10 @@ while True:
         break
 
 while True:
-    dig_yes_or_no = input("Включать ли цифры 0123456789. Введите да/нет ... ").lower()
+    dig_yes_or_no = input("Включать ли цифры 0123456789. Введите да/нет ... ")
     if yes_no(dig_yes_or_no):
+        dig_yes_or_no = 1
         break
-
-
-par_true(dig_yes_or_no)
-#if dig_yes_or_no == 'да':
-#    dig_yes_or_no = 1
 
 print(dig_yes_or_no)
 # while True:
