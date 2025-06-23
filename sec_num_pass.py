@@ -7,43 +7,45 @@ punctuation = "'!#$%&*+-=?@^_."
 chars = ''
 
 def int_num(b): # Фун-я для перевода вх. параметра в int если параметр число.
-    return int(b) if b.isdigit() else print("Введите цифру для ответа") # Вх. параметр число или нет.
-    
+    usr = input(b)
+    return int(usr) if usr.isdigit() else print("Введите цифру для ответа") # Вх. параметр число или нет.
+
 def yes_no(c): # Фун-я для проверки ответа пользователя. Ввел пользователь да или нет
-    c = c.lower()
-    return c if c == 'да' or c == 'нет' else print('Для точного ответа введите да или нет ')
+    usr = input(c.lower())
+    return usr if usr == 'да' or usr == 'нет' else print('Для точного ответа введите да или нет ')
 
 def par_true(a):
-    if a == 'да':
-        return a
+    usr = a
+    return usr if usr == 'да' else None
+
 
 while True:
-    pass_quan_usr = input("Введите кол-во паролей которое нужно сгенерировать ... ")
-    if int_num(pass_quan_usr): # Если параметр число, переводим в int и выходим.
+    pass_quan_usr = int_num("Введите кол-во паролей которое нужно сгенерировать ... ")
+    if pass_quan_usr:
         break
 
 while True:
-    len_pass = input("Введите длину одного пароля ... ")
-    if int_num(len_pass): # Если параметр число, переводим в int и выходим.
+    len_pass = int_num("Введите длину одного пароля ... ")
+    if len_pass:
         break
 
-lst = []   
+# print(pass_quan_usr, type(pass_quan_usr))
+# print(len_pass, type(len_pass))
+lst = []
 
-#while True:
-for i in pass_quan_usr:
-    for i in len_pass:
-        dig_yes_or_no = input("Включать ли цифры 0123456789. Введите да/нет ... ")
-        if yes_no(dig_yes_or_no):
+for i in range(pass_quan_usr):
+    dig_yes_or_no = yes_no("Включать ли цифры 0123456789. Введите да/нет ... ")
+    for i in range(len_pass):
             if par_true(dig_yes_or_no):
                 dig_yes_or_no = randint(ord('1'), ord('9'))
                 lst.append(chr(dig_yes_or_no))
-
-        low_let_yes_or_no = input("Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz. Введите да/нет ... ")
-        if yes_no(low_let_yes_or_no):
-            if par_true(low_let_yes_or_no):
-                low_let_yes_or_no = randint(ord('a'), ord('z'))
-                lst.append(chr(low_let_yes_or_no))
-
+#
+#         low_let_yes_or_no = input("Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz. Введите да/нет ... ")
+#         if yes_no(low_let_yes_or_no):
+#             if par_true(low_let_yes_or_no):
+#                 low_let_yes_or_no = randint(ord('a'), ord('z'))
+#                 lst.append(chr(low_let_yes_or_no))
+#
 print(lst)
     # upper_let_yes_or_no = input("Включать ли прописные буквы ABCDEFGHIJKLMNOPQRSTUVWXYZ. Введите да/нет ... ")
     # if yes_no(upper_let_yes_or_no):
