@@ -11,12 +11,17 @@ def int_num(b): # Фун-я для перевода вх. параметра в 
     return int(usr) if usr.isdigit() else print("Введите цифру для ответа") # Вх. параметр число или нет.
 
 def yes_no(c): # Фун-я для проверки ответа пользователя. Ввел пользователь да или нет
-    usr = input(c.lower())
-    return usr if usr == 'да' or usr == 'нет' else print('Для точного ответа введите да или нет ')
+    while True:
+        usr = input(c.lower())
+        if usr == 'да' or usr == 'нет':
+            return usr.lower()
+        else:
+            print('Для точного ответа введите да или нет ')
 
 def par_true(a):
     usr = a
     return usr if usr == 'да' else None
+
 
 
 while True:
@@ -29,42 +34,37 @@ while True:
     if len_pass:
         break
 
-# print(pass_quan_usr, type(pass_quan_usr))
-# print(len_pass, type(len_pass))
-lst = []
+dig_yes_or_no = yes_no("Включать ли цифры 0123456789. Введите да/нет ... ")
+low_let_yes_or_no = yes_no("Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz. Введите да/нет ... ")
+upper_let_yes_or_no = yes_no("Включать ли прописные буквы ABCDEFGHIJKLMNOPQRSTUVWXYZ. Введите да/нет ... ")
+pun_let_yes_or_no = yes_no("Включать ли символы '!#$%&*+-=?@^_.. Введите да/нет ... ")
+#amb_chr_yes_or_no = input("Исключать ли неоднозначные символы il1Lo0O. Введите да/нет ... ")
+
+lst = (dig_yes_or_no, low_let_yes_or_no, upper_let_yes_or_no, pun_let_yes_or_no)
 
 for i in range(pass_quan_usr):
-    dig_yes_or_no = yes_no("Включать ли цифры 0123456789. Введите да/нет ... ")
-    for i in range(len_pass):
-            if par_true(dig_yes_or_no):
-                dig_yes_or_no = randint(ord('1'), ord('9'))
-                lst.append(chr(dig_yes_or_no))
-#
-#         low_let_yes_or_no = input("Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz. Введите да/нет ... ")
-#         if yes_no(low_let_yes_or_no):
-#             if par_true(low_let_yes_or_no):
-#                 low_let_yes_or_no = randint(ord('a'), ord('z'))
-#                 lst.append(chr(low_let_yes_or_no))
-#
-print(lst)
-    # upper_let_yes_or_no = input("Включать ли прописные буквы ABCDEFGHIJKLMNOPQRSTUVWXYZ. Введите да/нет ... ")
-    # if yes_no(upper_let_yes_or_no):
-    #     if par_true(upper_let_yes_or_no):
-    #         upper_let_yes_or_no = 1
 
-    # pun_let_yes_or_no = input("Включать ли символы '!#$%&*+-=?@^_.. Введите да/нет ... ")
-    # if yes_no(pun_let_yes_or_no):
-    #     if par_true(pun_let_yes_or_no):
-    #         pun_let_yes_or_no = 1
+    for j in range(len_pass):
+        cnt = len_pass
+        lsti = []
+        for k in range(cnt):
 
-    # amb_chr_yes_or_no = input("Исключать ли неоднозначные символы il1Lo0O. Введите да/нет ... ")
-    # if yes_no(amb_chr_yes_or_no):
-    #     if par_true(amb_chr_yes_or_no):
-    #         amb_chr_yes_or_no = 1
+            while cnt != 0:
 
-    # break
+                if par_true(lst[0]):
+                    lsti.append(choice(digits))
+                    cnt-=1
+                if par_true(lst[1]):
+                    lsti.append(choice(lowercase_letters))
+                    cnt-=1
+                if par_true(lst[2]):
+                    lsti.append(choice(uppercase_letters))
+                    cnt-=1
+                if par_true(lst[3]):
+                    lsti.append(choice(punctuation))
+                    cnt-=1
 
-#for i i
+    print(lsti)
 
 
 
