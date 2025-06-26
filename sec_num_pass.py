@@ -12,17 +12,16 @@ def int_num(b): # Фун-я для перевода вх. параметра в 
 
 def yes_no(c): # Фун-я для проверки ответа пользователя. Ввел пользователь да или нет
     while True:
-        usr = input(c.lower())
+        usr = input(c).lower()
+
         if usr == 'да' or usr == 'нет':
-            return usr.lower()
+            return usr
         else:
             print('Для точного ответа введите да или нет ')
 
 def par_true(a):
     usr = a
     return usr if usr == 'да' else None
-
-
 
 while True:
     pass_quan_usr = int_num("Введите кол-во паролей которое нужно сгенерировать ... ")
@@ -41,30 +40,36 @@ pun_let_yes_or_no = yes_no("Включать ли символы '!#$%&*+-=?@^_.
 #amb_chr_yes_or_no = input("Исключать ли неоднозначные символы il1Lo0O. Введите да/нет ... ")
 
 lst = (dig_yes_or_no, low_let_yes_or_no, upper_let_yes_or_no, pun_let_yes_or_no)
+res = 0
+res1 = 0
+lsti = []
 
-for i in range(pass_quan_usr):
 
-    for j in range(len_pass):
-        cnt = len_pass
-        lsti = []
-        for k in range(cnt):
+# for i in range(pass_quan_usr):
+#     res+=1
+#     for j in range(len_pass):
+#         res1+=1
+# print(res,res1)
+cnt = len_pass
+        # lsti = []
+        # for k in range(cnt):
+        #
+while cnt > 0:
 
-            while cnt != 0:
+    if par_true(lst[0]):
+        lsti.append(choice(digits))
+        cnt-=1
+    elif par_true(lst[1]):
+        lsti.append(choice(lowercase_letters))
+        cnt-=1
+    elif par_true(lst[2]):
+        lsti.append(choice(uppercase_letters))
+        cnt-=1
+    elif par_true(lst[3]):
+        lsti.append(choice(punctuation))
+        cnt-=1
 
-                if par_true(lst[0]):
-                    lsti.append(choice(digits))
-                    cnt-=1
-                if par_true(lst[1]):
-                    lsti.append(choice(lowercase_letters))
-                    cnt-=1
-                if par_true(lst[2]):
-                    lsti.append(choice(uppercase_letters))
-                    cnt-=1
-                if par_true(lst[3]):
-                    lsti.append(choice(punctuation))
-                    cnt-=1
-
-    print(lsti)
+print(lsti)
 
 
 
