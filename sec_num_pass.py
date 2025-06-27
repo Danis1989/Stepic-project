@@ -1,10 +1,13 @@
 from random import *
+from random import shuffle
 
 digits = '0123456789'
 lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
 uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 punctuation = "'!#$%&*+-=?@^_."
 chars = ''
+
+
 
 def int_num(b): # Фун-я для перевода вх. параметра в int если параметр число.
     usr = input(b)
@@ -39,37 +42,38 @@ upper_let_yes_or_no = yes_no("Включать ли прописные букв�
 pun_let_yes_or_no = yes_no("Включать ли символы '!#$%&*+-=?@^_.. Введите да/нет ... ")
 #amb_chr_yes_or_no = input("Исключать ли неоднозначные символы il1Lo0O. Введите да/нет ... ")
 
-lst = (dig_yes_or_no, low_let_yes_or_no, upper_let_yes_or_no, pun_let_yes_or_no)
-res = 0
-res1 = 0
-lsti = []
+lst = [dig_yes_or_no, low_let_yes_or_no, upper_let_yes_or_no, pun_let_yes_or_no]
 
 
-# for i in range(pass_quan_usr):
-#     res+=1
-#     for j in range(len_pass):
-#         res1+=1
-# print(res,res1)
-cnt = len_pass
-        # lsti = []
-        # for k in range(cnt):
-        #
-while cnt > 0:
+for i in range(pass_quan_usr):
+    cnt = len_pass
+    chars = ''
 
-    if par_true(lst[0]):
-        lsti.append(choice(digits))
-        cnt-=1
-    elif par_true(lst[1]):
-        lsti.append(choice(lowercase_letters))
-        cnt-=1
-    elif par_true(lst[2]):
-        lsti.append(choice(uppercase_letters))
-        cnt-=1
-    elif par_true(lst[3]):
-        lsti.append(choice(punctuation))
-        cnt-=1
+    while cnt >= 0:
 
-print(lsti)
+        if par_true(lst[0]) and cnt > 0:
+            chars = choice(digits) + chars
+            #chars.append(choice(digits))
+            cnt-=1
+        if par_true(lst[1]) and cnt > 0:
+            chars = choice(lowercase_letters) + chars
+            #chars.append(choice(lowercase_letters))
+            cnt-=1
+        if par_true(lst[2]) and cnt > 0:
+            chars = choice(uppercase_letters) + chars
+            #chars.append(choice(uppercase_letters))
+            cnt-=1
+        if par_true(lst[3]) and cnt > 0:
+            chars = choice(punctuation) + chars
+            #chars.append(choice(punctuation))
+            cnt-=1
+        else:
+            break
+
+    #print(shuffle(chars))
+    chars = shuffle(list(chars))
+    print(chars)
+    print(type(chars))
 
 
 
