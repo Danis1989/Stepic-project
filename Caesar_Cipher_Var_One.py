@@ -1,0 +1,69 @@
+rus_alf = 'абвгдеежзийклмнопрстуфхцчшщъыьэюя'
+eng_alf = 'abcdefghijklmnopqrstuvwxyz'
+res = '' # Окончательный результат.
+int_med_res = ''
+
+
+# def one_or_two(qwest):
+#     while True:
+#         if '1' in qwest or '2' in qwest:
+#             return qwest
+#         else:
+#             print('Для ответа на вопрос введите 1 или 2 ... ')
+
+def num(figure):
+    while True:
+        return figure if figure.isdigit() and int(figure) > 0 else num(input('Для ответа на вопрос введите число больше нуля ... ' ))
+
+flag_user_res = input('Вы хотите зашифровать(1) или дешифровать(2)?. Для ответа введите соответствующую цифру 1 или 2 ... ')
+#one_or_two(flag_user_res)
+
+user_choice_enc = 'за' if '1' in flag_user_res else 'де'  # В зависимости от ответа пользователя будет сформирован смысл следующего вопроса(*) для него.
+sign = '+' if '1' in flag_user_res else '-'  # В зависимости от ответа будет применен + или - в дальнейшем.
+
+#user_choice_alf = input(f'{user_choice_enc.title()}шифровать на русском(1), или на английском(2)?. Для ответа введите соответствующую цифру 1 или 2 ... ')  # (*).
+#one_or_two(user_choice_alf)
+#language = 'русском' if '1' in user_choice_alf else 'английском'
+
+#user_choice_alf = rus_alf if '1' in user_choice_alf else eng_alf  # Выбор между русским и английским алфавитом.
+
+shift_usr = input(f'Для {user_choice_enc}шифровки введите вашу букву,слово или предложение на ... языке ... ')  # (*)
+
+#user_choice_alf = rus_alf if [i in rus_alf for i in shift_usr] == True else eng_alf
+
+shift_step = input('Введите шаг сдвига (цифра) ... ')
+num(shift_step)
+
+for i in range(len(shift_usr)):
+    flag = ''
+    user_choice_alf = ''
+
+    user_choice_alf = rus_alf if shift_usr[i] in rus_alf else eng_alf
+    #user_choice_alf = rus_alf
+    flag = True if shift_usr[i].upper() == shift_usr[i] else False  # Если входящий символ имеет верхний регистр. Flag = True.
+
+    # if shift_usr[i] in '*-/" ".,?><{}[]%^&`~-_+=()#№@"!':
+    #     res += shift_usr[i]
+    #     continue
+
+
+
+    # print(shift_usr[i])
+    print(user_choice_alf)
+    # print(flag)
+
+    int_med_res = user_choice_alf[eval(''.join(map(str, ('(', user_choice_alf.index(shift_usr[i].lower()), sign, shift_step, ')', '%', len(user_choice_alf)))))]
+
+
+    # user_choice_alf: Получаем новый индекс в выбранном пользователем алфавите. Eval поможет сделать вычисление формулы записанной ввиде строки.
+    # Соединяем(join) в строку(map) данные от пользователя(все данные переводим в тип str).
+    # 1.user_choice_alf.index(shift_usr): Узнаем индекс буквы пользователя в алфавите который выбрал пользователь.
+    # 2.sign: Знак + или - будет применен в формуле. В зависимости от шифровки или дешифровки.
+    # 3.shift_step: Шаг, на который сдвинем вперед или назад букву, которую хотим (за)дешифровать.
+    # 4.len(user_choice_alf): Длинна выбранного алфавита.
+
+    res += int_med_res.upper() if flag == True else int_med_res # Если буква перед (де)шифровкой имела верхний регистр то после шифровки новую букву возводим в верхний регистр.
+
+print(res)
+
+

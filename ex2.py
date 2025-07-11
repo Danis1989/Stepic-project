@@ -1,7 +1,4 @@
-from random import *
-
 left, right = 1, 100
-
 
 while left <= right:
     middle = (left + right) // 2
@@ -13,15 +10,6 @@ while left <= right:
     elif middle < user_num:
         left = middle + 1
         continue
-    else :
+    else:
         right = middle - 1
         continue
-
-
-
-
-
-
-
-
-
