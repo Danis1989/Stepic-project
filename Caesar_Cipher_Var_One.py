@@ -35,22 +35,23 @@ shift_step = input('Введите шаг сдвига (цифра) ... ')
 num(shift_step)
 
 for i in range(len(shift_usr)):
-    flag = ''
+    flag = False
     user_choice_alf = ''
+    copy_shift_usr = shift_usr[i]
 
-    user_choice_alf = rus_alf if shift_usr[i] in rus_alf else eng_alf
-    #user_choice_alf = rus_alf
-    flag = True if shift_usr[i].upper() == shift_usr[i] else False  # Если входящий символ имеет верхний регистр. Flag = True.
-
+    if shift_usr[i] in rus_alf:
+        user_choice_alf = rus_alf
+    elif shift_usr[i] in eng_alf:
+        user_choice_alf = eng_alf
+    elif shift_usr[i].upper() == copy_shift_usr[i]:
+        flag = True
     # if shift_usr[i] in '*-/" ".,?><{}[]%^&`~-_+=()#№@"!':
     #     res += shift_usr[i]
     #     continue
 
-
-
-    # print(shift_usr[i])
+    print(shift_usr[i])
     print(user_choice_alf)
-    # print(flag)
+    print(flag)
 
     int_med_res = user_choice_alf[eval(''.join(map(str, ('(', user_choice_alf.index(shift_usr[i].lower()), sign, shift_step, ')', '%', len(user_choice_alf)))))]
 
