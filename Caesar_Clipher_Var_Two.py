@@ -1,27 +1,28 @@
-rus_alf = 'абвгдеежзийклмнопрстуфхцчшщъыьэюя'
+rus_alf = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
 eng_alf = 'abcdefghijklmnopqrstuvwxyz'
 res = '' # Окончательный результат.
 
 
-# def one_or_two(qwest):
-#     while True:
-#         if '1' in qwest or '2' in qwest:
-#             return qwest
-#         else:
-#             print('Для ответа на вопрос введите 1 или 2 ... ')
-
-def num(figure):
+def right_step(inc_val):
     while True:
-        return figure if figure.isdigit() and int(figure) > 0 else num(input('Для ответа на вопрос введите число больше нуля ... ' ))
+        return inc_val if inc_val.isdigit() and int(inc_val) > 0 else right_step(inc_val = input('Для ответа на вопрос введите число больше нуля ... ' ))
+
+def one_or_two(inc_val):
+    while True:
+        return inc_val if inc_val in '1' or inc_val in '2' else one_or_two(inc_val = input('Для ответа на вопрос введите 1 или 2 ...'))
+
+def one_lang(inc_val):
+    while True:
+        return inc_val if inc_val[i in rus_alf for i in inc_val] == 1 else one_or_two(inc_val = input('Слово или предложение должно быть на одном языке ...')) #or inc_val[i in eng_alf for i in inc_val] == True else
 
 flag_user_res = input('Вы хотите зашифровать(1) или дешифровать(2)?. Для ответа введите соответствующую цифру 1 или 2 ... ')
-#one_or_two(flag_user_res)
+one_or_two(flag_user_res)
 
 user_choice_enc = 'за' if '1' in flag_user_res else 'де'  # В зависимости от ответа пользователя будет сформирован смысл следующего вопроса(*) для него.
 sign = '+' if '1' in flag_user_res else '-'  # В зависимости от ответа будет применен + или - в дальнейшем.
 
 user_choice_alf = input(f'{user_choice_enc.title()}шифровать на русском(1), или на английском(2)?. Для ответа введите соответствующую цифру 1 или 2 ... ')  # (*).
-#one_or_two(user_choice_alf)
+one_or_two(user_choice_alf)
 language = 'русском' if '1' in user_choice_alf else 'английском'
 
 user_choice_alf = rus_alf if '1' in user_choice_alf else eng_alf  # Выбор между русским и английским алфавитом.
@@ -31,19 +32,15 @@ shift_usr = input(f'Для {user_choice_enc}шифровки введите ва
 #user_choice_alf = rus_alf if [i in rus_alf for i in shift_usr] == True else eng_alf
 
 shift_step = input('Введите шаг сдвига (цифра) ... ')
-num(shift_step)
+right_step(shift_step)
 
 for i in range(len(shift_usr)):
     int_med_res = ''
     flag = False
 
-    if shift_usr[i].isalpha():
+    if shift_usr[i].isalpha() != 1:
         res += shift_usr[i]
         continue
-
-    # if shift_usr[i] in '*-/" "$;.,?><{}[]%^&`~-_+=()#№@"!':
-    #     res += shift_usr[i]
-    #     continue
 
     flag = True if shift_usr[i].upper() == shift_usr[i] else flag # Если входящий символ имеет верхний регистр. Flag = True.
 
