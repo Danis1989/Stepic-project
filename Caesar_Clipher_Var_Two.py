@@ -57,7 +57,7 @@ for i in shift_usr:
     # 4.len(user_choice_alf): Длинна выбранного алфавита.
 
     final_res+= int_med_res.upper() if flag_upper== True else int_med_res # Если буква перед (де)шифровкой имела верхний регистр, то после шифровки новую букву возводим в верхний регистр.
-
+#
 print(final_res)
 
 
